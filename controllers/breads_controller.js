@@ -12,6 +12,11 @@ breads.get('/', (req, res) => {
     //res.send(Bread)
 })
 
+//New
+breads.get('/new', (req, res) => {
+    res.render('new')
+})
+
 //Show
 breads.get('/:arrayIndex', (req, res) => {
     if (Bread[req.params.arrayIndex]) {
@@ -25,13 +30,29 @@ breads.get('/:arrayIndex', (req, res) => {
 
 //Create
 breads.post('/', (req, res) => {
-    if(req.body.hasGluten === 'on') {
+    console.log(req.body)
+    if(req.body.hasGluten === 'on'){
         req.body.hasGluten = 'true'
     } else {
         req.body.hasGluten = 'false'
     }
     Bread.push(req.body)
-    res.send(Bread)
+    res.redirect('/breads')
 })
 
 module.exports = breads
+
+
+
+
+// // breads.post('/', (req, res) => {
+//     if(req.body.hasGluten === 'on') {
+//         req.body.hasGluten = 'true'
+//     } else {
+//         req.body.hasGluten = 'false'
+//     }
+//     Bread.push(req.body)
+//     res.send(Bread)
+// })
+
+//this was under create before i made changes for server.js under postpan codealong
